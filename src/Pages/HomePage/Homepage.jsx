@@ -1,6 +1,8 @@
 // import React from 'react';
+import FAQSection from './Hero/FAQSection';
 import Hero from './Hero/Hero';
 import PromotionSlider from './Hero/PromotionSlider';
+import Testimonial from './Hero/Testimonial';
 
 const Homepage = () => {
     return (
@@ -10,6 +12,8 @@ const Homepage = () => {
             <Hero />
             </div>
             <PromotionSlider />
+            <Testimonial/>
+            <FAQSection/>
         </div>
     );
 };

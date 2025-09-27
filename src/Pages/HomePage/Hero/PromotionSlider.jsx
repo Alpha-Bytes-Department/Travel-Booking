@@ -1,143 +1,91 @@
-import diamond from "../../../assets/icons/Diamond.svg";
+import img from '../../../assets/logo/sponsorLogo.png';
+
 const PromotionSlider = () => {
+  const cards = [
+    { id: 1, logo: img },
+    { id: 2, logo: img },
+    { id: 3, logo: img },
+    { id: 1, logo: img },
+    { id: 2, logo: img },
+    { id: 3, logo: img },
+    { id: 1, logo: img },
+    { id: 2, logo: img },
+    { id: 3, logo: img },
+    { id: 1, logo: img },
+    { id: 2, logo: img },
+    { id: 3, logo: img },
+    { id: 1, logo: img },
+    { id: 2, logo: img },
+    { id: 3, logo: img },
+    { id: 1, logo: img },
+    { id: 2, logo: img },
+    { id: 3, logo: img },
+  ];
+
+  const duplicatedCards = [...cards, ...cards]; // Duplicate to ensure continuous loop
+
   return (
-    <div className="bg-[#001056] text-white p-6 mb-8 overflow-hidden">
+    <div className="p-4 mb-6 overflow-hidden sm:p-6">
       <style>
         {`
           @keyframes marquee {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-50%); } /* Move half the total width for seamless loop */
           }
-          .marquee-wrapper {
+          .marquee-container {
             display: flex;
-            width: 200%; /* duplicate contents er jonno */
-            animation: marquee 20s linear infinite;
+            gap: 1.25rem; /* gap-5 = 1.25rem for smaller screens, adjustable */
+            animation: marquee 30s linear infinite;
+            width: 200%; /* Double width to accommodate duplicated content */
           }
-          .marquee-wrapper:hover {
+          .marquee-container:hover {
             animation-play-state: paused;
           }
-          .marquee-content {
-            display: flex;
-            width: 50%; /* half width holo actual content */
-            justify-content: space-around;
+          .card-container {
+            flex-shrink: 0;
+            width: calc(33.33vw - 0.9375rem); /* ~33% viewport width minus half gap for 3 cards per view */
+            max-width: 150px;
+            min-width: 100px;
+            height: 80px; /* Fixed height for consistency */
+          }
+          @media (min-width: 641px) {
+            .marquee-container {
+              gap: 2.5rem; /* gap-10 = 2.5rem for desktop */
+            }
+            .card-container {
+              width: calc(50vw - 3.75rem); /* 50% viewport width minus half gap */
+              max-width: 200px;
+              min-width: 150px;
+              height: 100px;
+            }
           }
           @media (max-width: 640px) {
-            .marquee-wrapper {
-              animation-duration: 15s;
+            .marquee-container {
+              animation-duration: 10s; /* Slower speed for better visibility on phones */
             }
-            .marquee-content p {
-              font-size: 0.875rem;
-              margin: 0 2px;
+            .card-container {
+              width: calc(33.33vw - 0.625rem); /* Adjusted for 3 cards per view on small screens */
+              max-width: 120px;
+              min-width: 80px;
+              height: 60px;
             }
           }
         `}
       </style>
-      <div className="overflow-hidden whitespace-nowrap">
-        <div className="marquee-wrapper">
-          <div className="marquee-content">
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              Quick Response
-            </span>
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              10 years of experience
-            </span>
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              Support 7 days a week
-            </span>
-          </div>
-          <div className="marquee-content">
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              Quick Response
-            </span>
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              10 years of experience
-            </span>
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              Support 7 days a week
-            </span>
-          </div>
-          <div className="marquee-content">
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              Quick Response
-            </span>
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              10 years of experience
-            </span>
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              Support 7 days a week
-            </span>
-          </div>
-          <div className="marquee-content">
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              Quick Response
-            </span>
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              10 years of experience
-            </span>
-            <span className="mx-4 flex items-center">
-              <img
-                src={diamond}
-                alt="Diamond Icon"
-                className="inline h-8 w-8 mr-2"
-              />
-              Support 7 days a week
-            </span>
-          </div>
+
+      <div className="overflow-hidden">
+        <div className="marquee-container">
+          {duplicatedCards.map((card, index) => (
+            <div key={`${card.id}-${index}`} className="card-container">
+              <div className="border-2 px-2 py-3 rounded-2xl border-[#0000004D] h-full flex items-center justify-center">
+                <img
+                  src={card.logo || "/placeholder.svg"}
+                  alt={`Sponsor Logo ${card.id}`}
+                  className="h-6 object-contain sm:h-8"
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
